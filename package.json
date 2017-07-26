@@ -2,7 +2,10 @@
   "name": "sequelize-migration-pg-extras",
   "description": "Add db:create and db:drop scripts to your project",
   "license": "MIT",
-  "keywords": ["sequelize", "postgres"],
+  "keywords": [
+    "sequelize",
+    "postgres"
+  ],
   "version": "1.0.1",
   "repository": {
     "type": "git",
@@ -17,13 +20,26 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "echo \"Error: no automated tests\" && exit 1"
+    "test": "echo \"Error: no automated tests\" && exit 1",
+    "precommit": "lint-staged",
+    "format": "prettier --write lib/**/*.js *.js"
   },
   "dependencies": {
-    "pg": "^4.0.0"
+    "pg-promise": "^6.3.6"
   },
   "bin": {
-    "create_database": "lib/create_database.js",
-    "drop_database": "lib/drop_database.js"
+    "create_database": "create_database.js",
+    "drop_database": "drop_database.js"
+  },
+  "devDependencies": {
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.2",
+    "prettier": "^1.5.3"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
